@@ -10,7 +10,7 @@ server:
 
 spring:
   application:
-    name: recipes
+    name: ingredients
   config:
     import: optional:configserver:http://localhost:8888
   datasource:

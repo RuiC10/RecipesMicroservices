@@ -24,3 +24,6 @@ spring:
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 
+application:
+  config:
+    ingredients-url: http://localhost:8070/api/v1/ingredients

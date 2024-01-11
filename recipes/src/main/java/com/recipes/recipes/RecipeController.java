@@ -36,6 +36,11 @@ public class RecipeController {
         this.rs.updateRecipe(id, r);
     }
 
+    @GetMapping("/ingredients/{id}")
+    public List<Ingredient> getAllIngredientsOfRecipe(@PathVariable Long id){
+        return this.rs.getAllIngredientsOfRecipe(id);
+    }
+
     @DeleteMapping("/{id}")
     public void deleteRecipe(@PathVariable Long id){
         this.rs.deleteRecipe(id);

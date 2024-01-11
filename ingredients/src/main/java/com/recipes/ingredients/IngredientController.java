@@ -21,22 +21,23 @@ public class IngredientController {
         return this.rs.getAllIngredients();
     }
 
-    @GetMapping("/{ingredient-id}")
+    @GetMapping("/{id}")
     public Ingredient getIngredient(@PathVariable Long id){
         return this.rs.getIngredientById(id);
     }
+
 
     @PostMapping
     public void addIngredient(@RequestBody Ingredient r){
         this.rs.addIngredient(r);
     }
 
-    @PutMapping("/{ingredient-id}")
+    @PutMapping("/{id}")
     public void updateIngredient(@PathVariable Long id, @RequestBody Ingredient r){
         this.rs.updateIngredient(id, r);
     }
 
-    @DeleteMapping("/{ingredient-id}")
+    @DeleteMapping("/{id}")
     public void deleteIngredient(@PathVariable Long id){
         this.rs.deleteIngredient(id);
     }
