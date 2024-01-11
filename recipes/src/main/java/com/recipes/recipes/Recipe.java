@@ -1,24 +1,28 @@
 package com.recipes.recipes;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.grammars.hql.HqlParser;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@NoArgsConstructor
 public class Recipe {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private List<Long> ingredientsIds;
+    @OneToMany
+    private List<PreparationStep> steps;
     private String name;
 
-    public Recipe(Long id, List<Long> ingredientsIds, String name) {
-        List<Long> temp = (List<Long>) new ArrayList<>(ingredientsIds).clone();
+
+    public Recipe(Long id, List<PreparationStep> steps, String name) {
+        List<PreparationStep> temp = (List<PreparationStep>) new ArrayList<>(steps).clone();
         this.id = id;
-        this.ingredientsIds = temp;
+        this.steps = temp;
         this.name = name;
     }
 
@@ -26,8 +30,8 @@ public class Recipe {
         return id;
     }
 
-    public List<Long> getIngredientsIds() {
-        List<Long> temp = (List<Long>) new ArrayList<>(ingredientsIds).clone();
+    public List<PreparationStep> getSteps() {
+        List<PreparationStep> temp = (List<PreparationStep>) new ArrayList<>(steps).clone();
         return temp;
     }
 
@@ -39,9 +43,9 @@ public class Recipe {
         this.id = id;
     }
 
-    public void setIngredientsIds(List<Long> ingredientsIds) {
-        List<Long> temp = (List<Long>) new ArrayList<>(ingredientsIds).clone();
-        this.ingredientsIds = temp;
+    public void setSteps(List<PreparationStep> steps) {
+        List<PreparationStep> temp = (List<PreparationStep>) new ArrayList<>(steps).clone();
+        this.steps = temp;
     }
 
     public void setName(String name) {
@@ -52,7 +56,7 @@ public class Recipe {
     public String toString() {
         return "Recipe{" +
                 "id=" + id +
-                ", ingredientsIds=" + ingredientsIds +
+                ", ingredientsIds=" + steps +
                 ", name='" + name + '\'' +
                 '}';
     }

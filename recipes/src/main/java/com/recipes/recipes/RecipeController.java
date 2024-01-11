@@ -21,8 +21,8 @@ public class RecipeController {
         return this.rs.getAllRecipes();
     }
 
-    @GetMapping("/{recipe-id}")
-    public Recipe getAllRecipes(@PathVariable Long id){
+    @GetMapping("/{id}")
+    public Recipe getRecipe(@PathVariable Long id){
         return this.rs.getRecipeById(id);
     }
 
@@ -31,12 +31,12 @@ public class RecipeController {
         this.rs.addRecipe(r);
     }
 
-    @PutMapping("/{recipe-id}")
+    @PutMapping("/{id}")
     public void updateRecipe(@PathVariable Long id, @RequestBody Recipe r){
         this.rs.updateRecipe(id, r);
     }
 
-    @DeleteMapping("/{recipe-id}")
+    @DeleteMapping("/{id}")
     public void deleteRecipe(@PathVariable Long id){
         this.rs.deleteRecipe(id);
     }
