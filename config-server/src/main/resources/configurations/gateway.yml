@@ -22,3 +22,7 @@ spring:
           uri: http://localhost:8070
           predicates:
             - Path=/api/v1/ingredients/**
+        - id: preparationSteps
+          uri: http://localhost:8091
+          predicates:
+            - Path=/api/v1/preparationSteps/**

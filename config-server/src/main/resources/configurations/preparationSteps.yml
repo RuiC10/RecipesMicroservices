@@ -6,11 +6,11 @@ eureka:
       defaultZone: http://localhost:8761/eureka
 
 server:
-  port: 8090
+  port: 8091
 
 spring:
   application:
-    name: recipes
+    name: preparationSteps
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/recipe
@@ -21,7 +21,3 @@ spring:
       ddl-auto: create
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
-
-application:
-  config:
-    ingredients-url: http://localhost:8070/api/v1/ingredients

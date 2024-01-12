@@ -1,4 +1,4 @@
-package com.recipes.recipes;
+package com.recipes.preparationSteps;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,10 +9,13 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 public class PreparationStep {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private Long ingredientId;
+
     private String description;
 
     public PreparationStep(Long id, Long ingredientId, String description) {

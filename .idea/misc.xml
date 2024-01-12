@@ -9,7 +9,14 @@
         <option value="$PROJECT_DIR$/config-server/pom.xml" />
         <option value="$PROJECT_DIR$/recipes/pom.xml" />
         <option value="$PROJECT_DIR$/ingredients/pom.xml" />
+        <option value="$PROJECT_DIR$/comments/pom.xml" />
+        <option value="$PROJECT_DIR$/preparationSteps/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/comments/pom.xml" />
+      </set>
     </option>
     <option name="workspaceImportForciblyTurnedOn" value="true" />
   </component>

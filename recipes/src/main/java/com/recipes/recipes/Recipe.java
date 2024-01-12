@@ -2,10 +2,7 @@ package com.recipes.recipes;
 
 import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import org.hibernate.grammars.hql.HqlParser;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,14 +12,13 @@ public class Recipe {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToMany(cascade = CascadeType.ALL)
-    private List<PreparationStep> steps;
+    private List<PreparationStepId> steps;
+
     private String name;
 
-
-    public Recipe(Long id, List<PreparationStep> steps, String name) {
-        List<PreparationStep> temp = (List<PreparationStep>) new ArrayList<>(steps).clone();
+    public Recipe(Long id, List<PreparationStepId> steps, String name) {
+        this.steps = steps;
         this.id = id;
-        this.steps = temp;
         this.name = name;
     }
 
@@ -30,9 +26,8 @@ public class Recipe {
         return id;
     }
 
-    public List<PreparationStep> getSteps() {
-        List<PreparationStep> temp = (List<PreparationStep>) new ArrayList<>(steps).clone();
-        return temp;
+    public List<PreparationStepId> getSteps() {
+        return this.steps;
     }
 
     public String getName() {
@@ -43,9 +38,8 @@ public class Recipe {
         this.id = id;
     }
 
-    public void setSteps(List<PreparationStep> steps) {
-        List<PreparationStep> temp = (List<PreparationStep>) new ArrayList<>(steps).clone();
-        this.steps = temp;
+    public void setSteps(List<PreparationStepId> steps) {
+        this.steps = steps;
     }
 
     public void setName(String name) {
