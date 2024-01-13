@@ -16,9 +16,13 @@ public class RecipeService {
     @Autowired
     private final RecipeIngredient ri;
 
-    public RecipeService(RecipeRepository rr, RecipeIngredient ri) {
+    @Autowired
+    private final RecipePreparationStep rp;
+
+    public RecipeService(RecipeRepository rr, RecipeIngredient ri, RecipePreparationStep rp) {
         this.rr = rr;
         this.ri = ri;
+        this.rp = rp;
     }
 
     public List<Recipe> getAllRecipes() {
@@ -52,8 +56,36 @@ public class RecipeService {
     }
 
     public List<Ingredient> getAllIngredientsOfRecipe(Long id) {
-        return new ArrayList<>();
+        Optional<Recipe> recipe = this.rr.findById(id);
+        List<Ingredient> response = new ArrayList<>();
+        PreparationStep temp;
+
+        if(recipe.isPresent())
+            for (PreparationStepId prId : recipe.get().getSteps()) {
+                temp = this.rp.getPrepartionStep(prId.getId());
+                response.add(this.ri.getIngredient(temp.getIngredientId()));
+            }
+        else
+            throw new RecipeRequestException("Recipe non existent");
+
+        return response;
+
     }
 
+    public List<IngredientPrepStep> getFullPreparationSteps(Long id) {
+        Optional<Recipe> recipe = this.rr.findById(id);
+        List<IngredientPrepStep> response = new ArrayList<>();
+        PreparationStep temp;
 
+        if(recipe.isPresent())
+            for (PreparationStepId prId : recipe.get().getSteps()) {
+                temp = this.rp.getPrepartionStep(prId.getId());
+                response.add(new IngredientPrepStep(this.ri.getIngredient(temp.getIngredientId()).getName(), temp.getDescription()));
+            }
+        else
+            throw new RecipeRequestException("Recipe non existent");
+
+        return response;
+
+    }
 }

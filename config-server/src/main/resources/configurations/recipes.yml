@@ -25,3 +25,7 @@ spring:
 application:
   config:
     ingredients-url: http://localhost:8070/api/v1/ingredients
+
+application2:
+  config:
+    prepStep-url: http://localhost:8091/api/v1/preparationSteps

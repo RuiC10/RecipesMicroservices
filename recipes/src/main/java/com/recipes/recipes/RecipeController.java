@@ -41,6 +41,11 @@ public class RecipeController {
         return this.rs.getAllIngredientsOfRecipe(id);
     }
 
+    @GetMapping("/preparationSteps/{id}")
+    public List<IngredientPrepStep> getCommentsOfRecipe(@PathVariable Long id){
+        return this.rs.getFullPreparationSteps(id);
+    }
+
     @DeleteMapping("/{id}")
     public void deleteRecipe(@PathVariable Long id){
         this.rs.deleteRecipe(id);
